@@ -1,9 +1,73 @@
 {
   "name": "salesforce-jwt-auth",
-  "version": "1.0.0",
-  "main": "index.js",
+  "author": {
+    "name": "Myles linder",
+    "url": "https://github.com/myleslinder"
+  },
+  "description": "Promise-based node implementation of the SalesForce Auth 2.0 JWT Bearer Token flow",
+  "version": "0.0.1",
   "license": "MIT",
+  "type": "module",
+  "source": "src/index.ts",
+  "exports": "./dist/index.modern.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "dist/types",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "microbundle --alias ~=$pwd/src",
+    "start": "yarn build watch",
+    "typecheck": "yarn tsc --noEmit",
+    "lint": "eslint src --ext js,ts",
+    "lint:test": "eslint tests --ext js,ts",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
   "dependencies": {
-    "jsonwebtoken": "^8.5.1"
-  }
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-typescript": "^7.15.0",
+    "@size-limit/preset-small-lib": "^5.0.3",
+    "@types/jest": "^27.0.1",
+    "@types/jsonwebtoken": "^8.5.5",
+    "@types/node": "^16.7.13",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
+    "jest": "^27.1.0",
+    "lint-staged": "^11.1.2",
+    "microbundle": "^0.13.3",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1",
+    "size-limit": "^5.0.3",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^~": "<rootDir>/src"
+    },
+    "clearMocks": true
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.cjs.js",
+      "limit": "1.5 KB"
+    },
+    {
+      "path": "dist/index.module.js",
+      "limit": "1.5 KB"
+    }
+  ]
 }

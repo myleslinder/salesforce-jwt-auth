@@ -1,0 +1,5 @@
+- configuring the connected app
+- generating the public and private keys
+- serving a private key from an env file
+  - cat private.key | base64 -w 0
+  - see example

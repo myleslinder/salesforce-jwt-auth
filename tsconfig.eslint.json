@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "node-fetch"]
+  },
+  "include": ["src", "examples", "tests"],
+  "exclude": ["dist", "jest.config.js", "*.d.ts"]
+}
